@@ -5,11 +5,16 @@ const { createToken } = require('../services/authentication');
 const router=Router();
 
 router.get("/signin",(req,res)=>{
-    return res.render("signin");
+    return res.render("signin",{
+        user:req.user,
+        error:null
+    });
 })
 
 router.get("/signup",(req,res)=>{
-    return res.render("signup");
+    return res.render("signup",{
+        user:req.user,
+    });
 })
 
 router.post("/signup",async (req,res)=>{
@@ -32,6 +37,7 @@ router.post("/signin",async (req,res)=>{
     console.log(isValid)
     if(!isValid)
         return res.status(400).render("signin",{
+            user:null,
             error:"Invalid credentials. Try Again"
     });
     

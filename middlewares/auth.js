@@ -7,14 +7,14 @@ function checkforAuth(cookie) {
         const token = req.cookies[cookie];
         console.log("Token from cookie:",token);
         if(!token){
-            next();
+            return next();
         }
         try{
         const userPayload=verifyToken(token);
         req.user=userPayload;
         }
         catch(err){}
-        next();
+        return next();
     }
 
 };

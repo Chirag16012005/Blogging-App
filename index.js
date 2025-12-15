@@ -4,6 +4,10 @@ const app=express();
 const port=8005;
 const mongoose=require('mongoose');
 const cookieParser=require('cookie-parser');
+require('dotenv').config(); 
+
+const userRoutes=require('./routes/user');
+const blogRoutes=require('./routes/blog');
 app.use(cookieParser());
 
 mongoose.connect('mongodb://localhost:27017/blogify').then(e=>{
@@ -16,12 +20,12 @@ const { checkforAuth } = require('./middlewares/auth');
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());    
+app.use(checkforAuth('token'));
 
 
 app.set ('view engine','ejs');
 app.set('views',path.resolve('./views'));
 
-app.use(checkforAuth('token'));
 app.get('/',(req,res)=>{
     res.render('home',{
         user:req.user
@@ -33,3 +37,4 @@ app.listen(port,()=>{
 });
 
 app.use('/users',userRoutes);
+app.use('/blogs',blogRoutes);
