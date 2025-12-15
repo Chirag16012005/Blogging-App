@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <title>Sign In</title>
+</head>
+<body>
+    <%- include('./partials/Navbar') %>
+    <h1>Sign In</h1>
+    <form class="p-4 mx-auto" style="max-width: 600px;" action="/users/signin" method="POST">
+  <div class="mb-3 mt-4">
+    <label for="email" class="form-label">Email address</label>
+    <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input name="password" type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+   
+  
+</body>
+</html>
