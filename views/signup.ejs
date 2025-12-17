@@ -6,6 +6,7 @@
 </head>
 <body>
  <%- include('./partials/Navbar') %>
+ <div class="main-container">
     <form class="p-4 mx-auto" style="max-width: 600px;" action="/users/signup" method="POST">
         <div class="mb-3 mt-4 ml-4">
     <label for="name" class="form-label">Full Name</label>
@@ -22,8 +23,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-   
+</div>
+    <%- include('./partials/footer') %>
     <%- include('./partials/script') %>
-</body>
-</html>
+  </body>
+  </html>

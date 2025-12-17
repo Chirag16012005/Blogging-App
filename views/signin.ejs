@@ -12,6 +12,7 @@
 </head>
 <body>
     <%- include('./partials/Navbar') %>
+    <div class="main-content">
     <h1>Sign In</h1>
     <form class="p-4 mx-auto" style="max-width: 600px;" action="/users/signin" method="POST">
   <div class="mb-3 mt-4">
@@ -24,8 +25,8 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-   
-  
-</body>
-</html>
+</div>
+<%- include('./partials/script') %>
+<%- include('./partials/footer') %>
+  </body>
+  </html>

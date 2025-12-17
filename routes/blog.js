@@ -29,14 +29,20 @@ router.post("/",upload.single('coverImage'),checkforAuth('token'),async (req,res
     if(!req.user){
         return res.status(401).send("Unauthorized");
     }
-    const blog=await Blog.create({
-        title:req.body.title,
-        body:req.body.body,
-        coverImageUrl:req.file ? `/uploads/${req.file.filename}` : null,
-        createdBy:req.user._id,
+    if (!req.body.title || req.body.title.trim() === "") {
+        return res.status(400).render("addblog", {
+            user: req.user,
+            error: "Blog title is required."
+        });
+    }
+    const blog = await Blog.create({
+        title: req.body.title,
+        body: req.body.body,
+        coverImageUrl: req.file ? `/uploads/${req.file.filename}` : null,
+        createdBy: req.user._id,
     });
-    console.log("Request Body:",req.body);
-    console.log("Uploaded File:",req.file);
+    console.log("Request Body:", req.body);
+    console.log("Uploaded File:", req.file);
     return res.redirect(`/blogs/${blog._id}`);
 });
 
